@@ -3,6 +3,20 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+// Ce code sert à calculer les scores d'alignement de plusieurs paires de reads et à les
+// placer dans une matrice. Ce code peut être exécuté à partir d'une invite de commande
+// standard en allant dans le dossier oû se fichier se trouve et en faisant
+//
+// javac Assemblage.java
+// pour le compiler et
+//
+// java Assemblage
+// pour l'exécuter.
+//
+// Ce code prend comme input le fichier "reads.fq".
+// Pour que le fichier soit correctement pris en input, il doit se trouver
+// dans le même dossier que ce code.
+
 public class Assemblage {
 
     public static void main(String[] args) throws IOException {

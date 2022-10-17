@@ -3,6 +3,20 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+// Ce code sert à construire une séquence de fragment génomique à partir de
+// plusieurs reads et d'en déterminer la longueur. Ce code peut être exécuté à partir d'une
+// invite de commande standard en allant dans le dossier oû se fichier se trouve et en faisant
+//
+// javac Sequence.java
+// pour le compiler et
+//
+// java Sequence
+// pour l'exécuter.
+//
+// Ce code prend comme input le fichier "reads.fq".
+// Pour que le fichier soit correctement pris en input, il doit se trouver
+// dans le même dossier que ce code.
+
 public class Sequence {
 
     public static void main(String[] args) throws IOException {

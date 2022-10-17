@@ -3,6 +3,20 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+// Ce code sert à traduire une séquence nucléotide en code génétique standard dans
+// les trois différents cadres de lecture. Ce code peut être exécuté à partir d'une
+// invite de commande standard en allant dans le dossier oû se fichier se trouve et en faisant
+//
+// javac Traduction.java
+// pour le compiler et
+//
+// java Traduction
+// pour l'exécuter.
+//
+// Ce code prend comme input le fichier "sequence.fasta".
+// Pour que le fichier soit correctement pris en input, il doit se trouver
+// dans le même dossier que ce code.
+
 public class Traduction {
 
     public static void main(String[] args) throws IOException {
@@ -61,7 +75,7 @@ public class Traduction {
 
     public static String ReadSequence(String fileName) {
 
-        
+
         String line="";
 
         try {

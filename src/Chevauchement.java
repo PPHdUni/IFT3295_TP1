@@ -1,8 +1,21 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+
+// Ce code correspond à l'algorithme de programmation dynamique tel que demandé
+// dans l'exercice de "Chevauchement de séquences". Ce code peut être exécuté à partir
+// d'une invite de commande standard en allant dans le dossier oû se fichier se trouve et en faisant
+//
+// javac Chevauchement.java
+// pour le compiler et
+//
+// java Chevauchement
+// pour l'exécuter.
+//
+// Ce code prend comme input un fichier en format FASTQ qui contient une paire de séquences.
+// Pour que le fichier FASTQ soit correctement pris en input, il doit avoir le nom "sequence_input.fq",
+// et doit se trouver dans le même dossier que ce code.
 
 public class Chevauchement {
 
@@ -11,9 +24,6 @@ public class Chevauchement {
 
 
         String[] sequences = ReadSequence("sequence_input.fq");
-//        sequences[0] = "AGCTGGTA";
-//        sequences[1] = "GAGTACT";
-
 
         Alignement(sequences[0], sequences[1]);
 
