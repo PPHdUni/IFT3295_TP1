@@ -10,7 +10,7 @@ public class Chevauchement {
 
 
 
-        String[] sequences = ReadSequence("sequence.fq");
+        String[] sequences = ReadSequence("sequence_input.fq");
 //        sequences[0] = "AGCTGGTA";
 //        sequences[1] = "GAGTACT";
 
@@ -56,12 +56,15 @@ public class Chevauchement {
         tableauChev2[0][0] = "";
 
         System.out.print("\n");
-        System.out.print("    ");
+        System.out.print("        ");
         for (int j = 0; j < sequence1.length;j++) {
-            System.out.print(sequence1[j]+" ");
+            System.out.print(sequence1[j]+"    ");
         }
         System.out.print("\n");
-        System.out.print("  "+tableauScore[0][0]+" ");
+        System.out.print("   "+tableauScore[0][0]+" ");
+        for(int k=0; k < 4-Integer.toString(tableauScore[0][0]).length();k++) {
+            System.out.print(" ");
+        }
 
         for (int i = 1; i < sequence2.length+1;i++) {
             tableauScore[i][0] = -8*i;
@@ -72,14 +75,20 @@ public class Chevauchement {
         for (int j = 1; j < sequence1.length+1;j++) {
             tableauScore[0][j] = 0;
             System.out.print(tableauScore[0][j]+" ");
+            for(int k=0; k < 4-Integer.toString(tableauScore[0][j]).length();k++) {
+                System.out.print(" ");
+            }
 
             tableauChev1[0][j] = tableauChev1[0][j-1]+sequence1[j-1];
-            tableauChev2[0][j] = tableauChev2[0][j-1]+" ";
+            tableauChev2[0][j] = tableauChev2[0][j-1];
         }
         System.out.print("\n");
 
         for (int i = 1; i < sequence2.length+1;i++) {
-            System.out.print(sequence2[i-1]+" "+tableauScore[i][0]+" ");
+            System.out.print(sequence2[i-1]+"  "+tableauScore[i][0]+" ");
+            for(int k=0; k < 4-Integer.toString(tableauScore[i][0]).length();k++) {
+                System.out.print(" ");
+            }
             for (int j = 1; j < sequence1.length+1;j++) {
                 if(sequence1[j-1]==sequence2[i-1]) {
                     tableauScore[i][j] = tableauScore[i-1][j-1]+4;
@@ -98,21 +107,26 @@ public class Chevauchement {
 
                 if(tableauScore[i][j]<=tableauScore[i-1][j]-8) {
                     tableauScore[i][j]=tableauScore[i-1][j]-8;
-                    if (j== sequence1.length) { tableauChev1[i][j] = tableauChev1[i-1][j]+" "; }
+                    if (j== sequence1.length) { tableauChev1[i][j] = tableauChev1[i-1][j]; }
                     else { tableauChev1[i][j] = tableauChev1[i-1][j]+"-"; }
                     tableauChev2[i][j] = tableauChev2[i-1][j]+sequence2[i-1];
                 }
                 System.out.print(tableauScore[i][j]+" ");
+                for(int k=0; k < 4-Integer.toString(tableauScore[i][j]).length();k++) {
+                    System.out.print(" ");
+                }
             }
             System.out.print("\n");
         }
 
         int score = 0,
-                longueurChev=0;
+                longueurChev=0,
+                iOpt=0;
         for (int i = 1; i < sequence2.length+1;i++) {
             if(score<tableauScore[i][sequence1.length]) {
                 score = tableauScore[i][sequence1.length];
-                longueurChev = i;
+                iOpt = i;
+                longueurChev = tableauChev2[iOpt][sequence1.length].length();
             }
         }
 
@@ -122,10 +136,10 @@ public class Chevauchement {
         System.out.print("\n");
         System.out.println("L'alignement optimal est: ");
         System.out.println(tableauChev1[sequence2.length][sequence1.length]);
-        for(int i=0; i< tableauChev1[longueurChev][sequence1.length].length()-longueurChev;i++) {
+        for(int i=0; i< tableauChev1[iOpt][sequence1.length].length()-longueurChev;i++) {
             System.out.print(" ");
         }
-        System.out.println(sequence2);
+        System.out.println(tableauChev2[iOpt][sequence1.length]+seq2.substring(iOpt));
         System.out.print("\n");
         System.out.print("La longeur du chevauchement est: ");
         System.out.println(longueurChev);
